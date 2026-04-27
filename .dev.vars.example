@@ -1,0 +1,11 @@
+# ローカル開発用の環境変数サンプル
+# このファイルを `.dev.vars` にコピーし、値を埋めてください（.dev.vars は git 管理外）
+
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
+TO_EMAIL=hisashisato134@gmail.com
+FROM_EMAIL=onboarding@resend.dev
+
+# Cloudflare Turnstile（CAPTCHA） - 後で有効化する場合に設定
+# 未設定の場合 Turnstile による検証はスキップされます
+PUBLIC_TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET_KEY=

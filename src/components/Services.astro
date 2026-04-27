@@ -1,0 +1,79 @@
+---
+const services = [
+  {
+    title: "Web開発",
+    desc: "コーポレートサイト、Webアプリ、ECサイトの設計・開発。SEO・パフォーマンス・保守性を重視した実装を行います。",
+    features: ["要件定義 / 設計", "デザイン実装", "SEO対策", "保守・運用"],
+    price: "¥300,000",
+    badge: "人気",
+  },
+  {
+    title: "業務システム開発",
+    desc: "自社業務に合わせた業務システム・社内ツールの開発。既存システムの刷新やDX推進もご相談ください。",
+    features: ["業務分析 / ヒアリング", "システム設計", "クラウド構築", "導入支援"],
+    price: "¥800,000",
+  },
+  {
+    title: "技術コンサルティング",
+    desc: "技術選定・アーキテクチャ設計・コードレビュー・採用支援など、CTO代行的なポジションでのご支援が可能です。",
+    features: ["技術選定支援", "コードレビュー", "アーキテクチャ設計", "採用 / 育成支援"],
+    price: "¥150,000",
+    priceUnit: "月〜",
+  },
+];
+---
+
+<section id="services" class="py-24 md:py-32 border-t border-zinc-200/60 dark:border-zinc-800/60">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="max-w-2xl">
+      <span class="text-sm font-medium text-indigo-600">Services</span>
+      <h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight">
+        提供サービス・料金
+      </h2>
+      <p class="mt-4 text-zinc-600 dark:text-zinc-400">
+        以下の料金は目安です。要件・規模により柔軟にお見積もりいたします。まずはお気軽にご相談ください。
+      </p>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+      {services.map((s, i) => (
+        <div class={`relative p-8 rounded-2xl border transition-all ${i === 0 ? "bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 border-zinc-900 dark:border-white shadow-xl" : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600"}`}>
+          {s.badge && (
+            <span class="absolute top-6 right-6 text-[11px] font-bold px-2 py-0.5 rounded-full bg-indigo-500 text-white">
+              {s.badge}
+            </span>
+          )}
+          <h3 class="text-xl font-bold">{s.title}</h3>
+          <p class={`mt-3 text-sm leading-relaxed ${i === 0 ? "text-zinc-300 dark:text-zinc-600" : "text-zinc-600 dark:text-zinc-400"}`}>
+            {s.desc}
+          </p>
+
+          <div class="mt-6 pb-6 border-b border-current/10">
+            <div class="flex items-baseline gap-1">
+              <span class={`text-xs ${i === 0 ? "text-zinc-400 dark:text-zinc-500" : "text-zinc-500"}`}>from</span>
+              <span class="text-3xl font-bold tracking-tight">{s.price}</span>
+              <span class={`text-sm ${i === 0 ? "text-zinc-400 dark:text-zinc-500" : "text-zinc-500"}`}>{s.priceUnit ?? "〜"}</span>
+            </div>
+          </div>
+
+          <ul class="mt-6 space-y-2.5 text-sm">
+            {s.features.map((f) => (
+              <li class="flex items-center gap-2">
+                <svg class={`w-4 h-4 flex-shrink-0 ${i === 0 ? "text-indigo-400" : "text-indigo-600"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="#contact"
+            class={`mt-8 inline-flex w-full items-center justify-center gap-1 px-5 py-2.5 rounded-full text-sm font-medium transition-opacity ${i === 0 ? "bg-white text-zinc-900 dark:bg-zinc-900 dark:text-white" : "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"} hover:opacity-90`}
+          >
+            相談する
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
