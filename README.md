@@ -90,7 +90,7 @@ Cloudflare Pages → 作成したプロジェクト → **Settings** → **Envir
 | 変数名                       | 値                                | 説明                                                |
 | ---------------------------- | --------------------------------- | --------------------------------------------------- |
 | `RESEND_API_KEY`             | `re_xxxxxxxxxxxx`                 | Resend で発行した API キー                          |
-| `TO_EMAIL`                   | `hisashisato134@gmail.com`        | 受信したいメールアドレス                            |
+| `TO_EMAIL`                   | `your-email@example.com`          | 受信したいメールアドレス                            |
 | `FROM_EMAIL`                 | `contact@yourdomain.com` 等        | 送信元（後述：要ドメイン認証）                      |
 | `PUBLIC_TURNSTILE_SITE_KEY`  | `0x4AAAAAAA...`                   | Cloudflare Turnstile の Site key（任意・後述）      |
 | `TURNSTILE_SECRET_KEY`       | `0x4AAAAAAA...`                   | Cloudflare Turnstile の Secret key（任意・後述）    |

@@ -5,7 +5,7 @@
  *
  * 必要な環境変数（Cloudflare Pages の Settings > Environment variables で設定）:
  *   RESEND_API_KEY  - Resend の API キー (https://resend.com/)
- *   TO_EMAIL        - 受信するメールアドレス（例: hisashisato134@gmail.com）
+ *   TO_EMAIL        - 受信するメールアドレス（例: your-email@example.com）
  *   FROM_EMAIL      - 送信元アドレス（Resendで認証済みドメインのアドレス）
  *                     例: contact@yourdomain.com
  *                     ※ 認証ドメインがない場合は "onboarding@resend.dev" を仮で使用可
