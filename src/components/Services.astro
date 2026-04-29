@@ -23,10 +23,18 @@ const services = [
 ];
 ---
 
-<section id="services" class="py-24 md:py-32 border-t border-zinc-200/60 dark:border-zinc-800/60">
+<section id="services" class="relative py-24 md:py-32 border-t border-zinc-200/60 dark:border-zinc-800/60 overflow-hidden">
+  <!-- subtle dot pattern -->
+  <div aria-hidden="true" class="absolute inset-0 -z-10 opacity-40 dark:opacity-20 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]">
+    <div class="h-full w-full bg-[radial-gradient(circle,_#a1a1aa_1px,_transparent_1px)] bg-[size:24px_24px]"></div>
+  </div>
+
   <div class="max-w-6xl mx-auto px-6">
     <div class="max-w-2xl">
-      <span class="text-sm font-medium text-blue-600">Services</span>
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-px bg-blue-600"></div>
+        <span class="text-sm font-medium text-blue-600">Services</span>
+      </div>
       <h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight">
         提供サービス・料金
       </h2>

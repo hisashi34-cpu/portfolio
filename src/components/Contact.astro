@@ -2,10 +2,17 @@
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY as string | undefined;
 ---
 
-<section id="contact" class="py-24 md:py-32 border-t border-zinc-200/60 dark:border-zinc-800/60">
+<section id="contact" class="relative py-24 md:py-32 border-t border-zinc-200/60 dark:border-zinc-800/60 overflow-hidden">
+  <!-- soft gradient blob -->
+  <div aria-hidden="true" class="absolute top-10 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] bg-blue-400/15 dark:bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
+
   <div class="max-w-4xl mx-auto px-6">
     <div class="text-center max-w-2xl mx-auto">
-      <span class="text-sm font-medium text-blue-600">Contact</span>
+      <div class="flex items-center justify-center gap-3">
+        <div class="w-8 h-px bg-blue-600"></div>
+        <span class="text-sm font-medium text-blue-600">Contact</span>
+        <div class="w-8 h-px bg-blue-600"></div>
+      </div>
       <h2 class="mt-2 text-3xl md:text-5xl font-bold tracking-tight">
         お問い合わせ
       </h2>
