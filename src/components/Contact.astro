@@ -3,8 +3,10 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY as string | u
 ---
 
 <section id="contact" class="relative py-24 md:py-32 border-t border-zinc-200/60 dark:border-zinc-800/60 overflow-hidden">
-  <!-- soft gradient blob -->
-  <div aria-hidden="true" class="absolute top-10 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] bg-blue-400/15 dark:bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
+  <!-- decorative blobs -->
+  <div aria-hidden="true" class="absolute top-10 left-1/2 -translate-x-1/2 w-[40rem] h-[40rem] bg-blue-400/35 dark:bg-blue-500/20 rounded-full blur-3xl -z-10 animate-blob"></div>
+  <div aria-hidden="true" class="absolute bottom-20 -right-32 w-[24rem] h-[24rem] bg-cyan-400/25 dark:bg-cyan-500/15 rounded-full blur-3xl -z-10 animate-blob-delayed"></div>
+  <div aria-hidden="true" class="absolute bottom-20 -left-32 w-[24rem] h-[24rem] bg-sky-400/25 dark:bg-sky-500/15 rounded-full blur-3xl -z-10 animate-blob"></div>
 
   <div class="max-w-4xl mx-auto px-6">
     <div class="text-center max-w-2xl mx-auto">
