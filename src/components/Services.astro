@@ -26,7 +26,7 @@ const services = [
 <section id="services" class="py-24 md:py-32 border-t border-zinc-200/60 dark:border-zinc-800/60">
   <div class="max-w-6xl mx-auto px-6">
     <div class="max-w-2xl">
-      <span class="text-sm font-medium text-indigo-600">Services</span>
+      <span class="text-sm font-medium text-blue-600">Services</span>
       <h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight">
         提供サービス・料金
       </h2>
@@ -39,7 +39,7 @@ const services = [
       {services.map((s, i) => (
         <div class={`relative p-8 rounded-2xl border transition-all ${i === 0 ? "bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 border-zinc-900 dark:border-white shadow-xl" : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600"}`}>
           {s.badge && (
-            <span class="absolute top-6 right-6 text-[11px] font-bold px-2 py-0.5 rounded-full bg-indigo-500 text-white">
+            <span class="absolute top-6 right-6 text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-500 text-white">
               {s.badge}
             </span>
           )}
@@ -59,7 +59,7 @@ const services = [
           <ul class="mt-6 space-y-2.5 text-sm">
             {s.features.map((f) => (
               <li class="flex items-center gap-2">
-                <svg class={`w-4 h-4 flex-shrink-0 ${i === 0 ? "text-indigo-400" : "text-indigo-600"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
+                <svg class={`w-4 h-4 flex-shrink-0 ${i === 0 ? "text-blue-400" : "text-blue-600"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
                 {f}
               </li>
             ))}

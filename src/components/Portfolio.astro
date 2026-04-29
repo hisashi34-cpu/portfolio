@@ -12,7 +12,7 @@ const projects = [
     category: "プロダクト開発",
     desc: "中小企業向けの業務日報・勤怠管理SaaS。月額課金モデルで100社以上にご導入いただいています。",
     tags: ["TypeScript", "Supabase", "Stripe"],
-    gradient: "from-indigo-200 to-violet-200 dark:from-indigo-900 dark:to-violet-900",
+    gradient: "from-blue-200 to-sky-200 dark:from-blue-900 dark:to-sky-900",
   },
   {
     title: "社内DX推進プロジェクト",
@@ -40,7 +40,7 @@ const projects = [
     category: "AI開発",
     desc: "カスタマーサポート向けのAIチャットボットを構築。問合せ対応工数を月あたり120時間削減。",
     tags: ["Python", "OpenAI", "RAG"],
-    gradient: "from-fuchsia-200 to-pink-200 dark:from-fuchsia-900 dark:to-pink-900",
+    gradient: "from-cyan-200 to-blue-200 dark:from-cyan-900 dark:to-blue-900",
   },
 ];
 ---
@@ -49,7 +49,7 @@ const projects = [
   <div class="max-w-6xl mx-auto px-6">
     <div class="flex items-end justify-between flex-wrap gap-4">
       <div class="max-w-2xl">
-        <span class="text-sm font-medium text-indigo-600">Portfolio</span>
+        <span class="text-sm font-medium text-blue-600">Portfolio</span>
         <h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight">
           実績紹介
         </h2>
@@ -66,8 +66,8 @@ const projects = [
             <span class="text-zinc-500 dark:text-zinc-400 text-xs font-medium">[ サムネイル ]</span>
           </div>
           <div class="p-6">
-            <span class="text-xs font-medium text-indigo-600">{p.category}</span>
-            <h3 class="mt-2 font-bold text-lg group-hover:text-indigo-600 transition-colors">{p.title}</h3>
+            <span class="text-xs font-medium text-blue-600">{p.category}</span>
+            <h3 class="mt-2 font-bold text-lg group-hover:text-blue-600 transition-colors">{p.title}</h3>
             <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{p.desc}</p>
             <div class="mt-4 flex flex-wrap gap-1.5">
               {p.tags.map((t) => (
