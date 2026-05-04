@@ -22,6 +22,8 @@ const projects = [
     desc: "従業員の打刻から勤怠集計、PDF出力までを一元管理する勤怠システム。中小企業向けに最適化。",
     tags: ["React", "Firebase", "Vite"],
     gradient: "from-emerald-200 to-teal-200 dark:from-emerald-900 dark:to-teal-900",
+    video: "/projects/kintai-demo.mp4",
+    landscape: true,
   },
   {
     title: "小口現金精算アプリ",
@@ -59,7 +61,17 @@ const projects = [
       {projects.map((p) => (
         <article class="relative group rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:shadow-lg hover:-translate-y-0.5 transition-all">
           <div class={`relative aspect-[16/10] bg-gradient-to-br ${p.gradient} flex items-center justify-center overflow-hidden`}>
-            {p.video ? (
+            {p.video && p.landscape ? (
+              <video
+                src={p.video}
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                class="absolute inset-0 w-full h-full object-cover"
+              ></video>
+            ) : p.video ? (
               <video
                 src={p.video}
                 autoplay
