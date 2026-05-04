@@ -5,56 +5,100 @@
   <!-- decorative blob -->
   <div aria-hidden="true" class="absolute top-20 -right-32 w-[28rem] h-[28rem] bg-blue-400/25 dark:bg-blue-500/15 rounded-full blur-3xl -z-10 animate-blob-delayed"></div>
 
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="grid md:grid-cols-3 gap-12 md:gap-16">
-      <div class="md:col-span-1">
-        <div class="flex items-center gap-3">
-          <div class="w-8 h-px bg-blue-600"></div>
-          <span class="text-sm font-medium text-blue-600">About</span>
-        </div>
-        <h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight">
-          自己紹介
-        </h2>
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-px bg-blue-600"></div>
+      <span class="text-sm font-medium text-blue-600">About</span>
+    </div>
+    <h2 class="mt-3 text-3xl md:text-5xl font-bold tracking-tight leading-[1.15]">
+      16年の現場経験を、<br class="hidden sm:block" />
+      <span class="bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-400 bg-clip-text text-transparent">
+        AI で次の形へ。
+      </span>
+    </h2>
+
+    <div class="mt-12 grid md:grid-cols-[260px_1fr] gap-10 md:gap-14 items-start">
+      <!-- Profile image placeholder -->
+      <div class="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 via-sky-100 to-cyan-100 dark:from-blue-950 dark:via-sky-950 dark:to-cyan-950 flex items-center justify-center ring-1 ring-zinc-200 dark:ring-zinc-800">
+        <span class="text-zinc-400 dark:text-zinc-600 text-sm">[ プロフィール写真 ]</span>
       </div>
 
-      <div class="md:col-span-2 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
-        <div class="aspect-[4/3] md:aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 via-sky-100 to-cyan-100 dark:from-blue-950 dark:via-sky-950 dark:to-cyan-950 flex items-center justify-center mb-8">
-          <span class="text-zinc-400 dark:text-zinc-600 text-sm">[ プロフィール写真 ]</span>
-        </div>
-
+      <!-- Bio content -->
+      <div class="space-y-5 text-zinc-700 dark:text-zinc-300 leading-relaxed">
         <p class="text-lg">
-          はじめまして、<strong class="text-zinc-900 dark:text-white">佐藤 久</strong>と申します。
-          フルスタック開発者として、Webアプリ・業務システム・クラウドインフラの設計から実装、運用までを一貫してご支援しています。
+          はじめまして。<strong class="text-zinc-900 dark:text-white">佐藤 尚志</strong>と申します。仙台市を拠点に、土木施工管理技士として 16 年以上、現場の最前線で工事の段取り・安全・品質を預かってきました。同時に運行管理者としてもチームを動かす立場にあり、「人と現場を回す」ことの難しさと面白さを、骨身に染み込ませてきた人間です。
         </p>
 
         <p>
-          大手SIerでのシステム開発、スタートアップでのプロダクト開発を経て独立。技術選定の妥当性、保守性、コストバランスを重視した
-          <strong class="text-zinc-900 dark:text-white">"長く使えるシステム"</strong>づくりを得意としています。
+          そんな私がいま掲げているのは、<strong class="text-zinc-900 dark:text-white">「業務を AI で仕組み化する」</strong>というテーマです。
+        </p>
+      </div>
+    </div>
+
+    <!-- Subsections -->
+    <div class="mt-12 grid md:grid-cols-2 gap-x-12 gap-y-10">
+      <div>
+        <h3 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-3">
+          <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+          なぜ、土木 × AI なのか
+        </h3>
+        <p class="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+          建設業界は、日本の根幹を支える誇り高い産業です。しかし内側に入れば誰もが知っている事実があります。── 紙と FAX、電話と手書き、属人化したノウハウ。本来もっと早く、もっと正確に、もっとラクにできるはずの業務が、慣習のなかで止まったままになっている。
+        </p>
+        <p class="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+          この<strong class="text-zinc-900 dark:text-white">「業界の IT 空白地帯」</strong>こそ、私が挑戦すべきフィールドだと確信しています。現場を知る人間が AI を扱えば、机上の理論ではない、本当に使える仕組みがつくれる。私はその橋渡し役になりたいのです。
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-3">
+          <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+          提供できること
+        </h3>
+        <p class="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+          これまで私は、LINE を起点とした勤怠・給与システム、有給管理アプリ、車両運行日誌の AI-OCR 化、経費精算の自動化など、中小企業の現場で<strong class="text-zinc-900 dark:text-white">「明日から使える」</strong>仕組みを数多く形にしてきました。Web サイト制作、LINE 公式アカウント構築、MEO 対策まで、集客から業務効率化までを一気通貫でご支援できるのが強みです。
+        </p>
+        <p class="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+          特別なツールを売るのではありません。<strong class="text-zinc-900 dark:text-white">お客様の業務を一緒に分解し、AI と仕組みで再構築する。</strong>これが私のスタイルです。
+        </p>
+      </div>
+
+      <div class="md:col-span-2">
+        <h3 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-3">
+          <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+          大切にしていること
+        </h3>
+        <p class="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-3xl">
+          私が最も価値を置くのは、単なる発注・受注の関係ではなく、<strong class="text-zinc-900 dark:text-white">目標を共有し、共に走るパートナーシップ</strong>です。「ありがとう」と心から言ってもらえる仕事を積み重ねたい。その想いだけは、現場時代から一度もブレたことがありません。
+        </p>
+        <p class="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-3xl">
+          土木の世界で培った段取り力と、AI 時代の新しい武器。この二つを掛け合わせて、あなたのビジネスに「次の一手」をお届けします。
         </p>
 
-        <p>
-          「DXを進めたいが何から始めればいいかわからない」「既存システムが老朽化していてどうにかしたい」など、
-          ふわっとしたご相談から具体的な開発依頼まで、お気軽にお問い合わせください。
-        </p>
+        <a href="#contact" class="group mt-6 inline-flex items-center gap-2 text-blue-600 font-medium">
+          まずはお気軽に、ご相談ください
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
 
-        <div class="pt-4 grid grid-cols-2 gap-4 text-sm">
-          <div>
-            <div class="text-zinc-500 dark:text-zinc-500">所在地</div>
-            <div class="mt-1 font-medium">東京都 / リモート対応可</div>
-          </div>
-          <div>
-            <div class="text-zinc-500 dark:text-zinc-500">対応形態</div>
-            <div class="mt-1 font-medium">業務委託 / 顧問契約</div>
-          </div>
-          <div>
-            <div class="text-zinc-500 dark:text-zinc-500">稼働時間</div>
-            <div class="mt-1 font-medium">平日 9:00 - 18:00</div>
-          </div>
-          <div>
-            <div class="text-zinc-500 dark:text-zinc-500">対応言語</div>
-            <div class="mt-1 font-medium">日本語 / 英語</div>
-          </div>
-        </div>
+    <!-- Facts grid -->
+    <div class="mt-14 pt-8 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm">
+      <div>
+        <div class="text-zinc-500 dark:text-zinc-500 text-xs uppercase tracking-wider">所在地</div>
+        <div class="mt-1.5 font-medium">仙台市 / 全国対応</div>
+      </div>
+      <div>
+        <div class="text-zinc-500 dark:text-zinc-500 text-xs uppercase tracking-wider">対応形態</div>
+        <div class="mt-1.5 font-medium">業務委託 / 顧問契約</div>
+      </div>
+      <div>
+        <div class="text-zinc-500 dark:text-zinc-500 text-xs uppercase tracking-wider">現場経験</div>
+        <div class="mt-1.5 font-medium">土木施工管理 16 年 +</div>
+      </div>
+      <div>
+        <div class="text-zinc-500 dark:text-zinc-500 text-xs uppercase tracking-wider">資格</div>
+        <div class="mt-1.5 font-medium">土木施工管理技士 / 運行管理者</div>
       </div>
     </div>
   </div>
