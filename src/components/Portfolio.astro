@@ -1,40 +1,5 @@
 ---
-const projects = [
-  {
-    title: "社用車走行日報",
-    category: "業務SaaS",
-    desc: "社用車を使う企業向けの走行・日報管理アプリ。GPS自動記録で日報作成時間を80%削減。",
-    tags: ["業務SaaS", "GPS連携", "モバイル対応"],
-    gradient: "from-blue-200 to-sky-200 dark:from-blue-900 dark:to-sky-900",
-    video: "/projects/vehicle-log-demo.mp4",
-  },
-  {
-    title: "業務日報アプリ",
-    category: "業務SaaS",
-    desc: "営業職向けの業務日報作成アプリ。提出・確認・集計までを一元化し、報告業務の負荷を軽減。",
-    tags: ["業務SaaS", "営業支援", "レポート"],
-    gradient: "from-cyan-200 to-blue-200 dark:from-cyan-900 dark:to-blue-900",
-    video: "/projects/business-log-demo.mp4",
-  },
-  {
-    title: "出勤管理システム",
-    category: "業務システム",
-    desc: "従業員の打刻から勤怠集計、PDF出力までを一元管理する勤怠システム。中小企業向けに最適化。",
-    tags: ["React", "Firebase", "Vite"],
-    gradient: "from-emerald-200 to-teal-200 dark:from-emerald-900 dark:to-teal-900",
-    video: "/projects/kintai-demo.mp4",
-    landscape: true,
-  },
-  {
-    title: "小口現金精算アプリ",
-    category: "業務SaaS",
-    desc: "経費精算をスマホで完結。領収書添付・自動計算・承認フローまで対応した小口現金精算アプリ。",
-    tags: ["Firebase", "モバイル対応", "業務SaaS"],
-    gradient: "from-amber-200 to-yellow-200 dark:from-amber-900 dark:to-yellow-900",
-    image: "/projects/koguchi-thumb.png",
-    link: "https://koguchi-seisan.web.app/%E5%96%B6%E6%A5%AD%E8%B3%87%E6%96%99_%E3%83%87%E3%83%A2%E5%8B%95%E7%94%BB.html",
-  },
-];
+import { projects } from "../data/projects";
 ---
 
 <section id="portfolio" class="relative py-24 md:py-32 border-t border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50 dark:bg-zinc-950/50 overflow-hidden">
@@ -53,7 +18,7 @@ const projects = [
           実績紹介
         </h2>
         <p class="mt-4 text-zinc-600 dark:text-zinc-400">
-          これまでお手伝いさせていただいたプロジェクトの一部をご紹介します。
+          これまでお手伝いさせていただいたプロジェクトの一部をご紹介します。各カードをクリックすると詳細をご覧いただけます。
         </p>
       </div>
     </div>
@@ -96,12 +61,10 @@ const projects = [
           <div class="p-6">
             <div class="flex items-start justify-between gap-3">
               <span class="text-xs font-medium text-blue-600">{p.category}</span>
-              {p.link && (
-                <span class="inline-flex items-center gap-1 text-xs text-zinc-400 group-hover:text-blue-600 transition-colors">
-                  <span>デモを見る</span>
-                  <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l10-10M7 7h10v10"/></svg>
-                </span>
-              )}
+              <span class="inline-flex items-center gap-1 text-xs text-zinc-400 group-hover:text-blue-600 transition-colors">
+                <span>詳細を見る</span>
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </span>
             </div>
             <h3 class="mt-2 font-bold text-lg group-hover:text-blue-600 transition-colors">{p.title}</h3>
             <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{p.desc}</p>
@@ -111,15 +74,11 @@ const projects = [
               ))}
             </div>
           </div>
-          {p.link && (
-            <a
-              href={p.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="absolute inset-0 z-10"
-              aria-label={`${p.title}のデモを別タブで開く`}
-            ></a>
-          )}
+          <a
+            href={`/projects/${p.slug}`}
+            class="absolute inset-0 z-10"
+            aria-label={`${p.title}の詳細を見る`}
+          ></a>
         </article>
       ))}
     </div>
