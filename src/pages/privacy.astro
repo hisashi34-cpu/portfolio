@@ -1,0 +1,191 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="プライバシーポリシー | たかし"
+  description="tunagaru.dev のプライバシーポリシー。お問い合わせフォームで取得する情報の取り扱いについて。"
+>
+  <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-white/70 dark:bg-black/60 border-b border-zinc-200/60 dark:border-zinc-800/60">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="font-bold tracking-tight text-lg flex items-center gap-1">
+        たかし<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+      </a>
+      <a
+        href="/"
+        class="inline-flex items-center gap-1.5 text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white transition-colors"
+      >
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        ホームに戻る
+      </a>
+    </div>
+  </header>
+
+  <main class="relative pt-32 pb-24 overflow-hidden">
+    <!-- decorative blob -->
+    <div aria-hidden="true" class="absolute top-20 -right-32 w-[28rem] h-[28rem] bg-blue-400/20 dark:bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
+
+    <article class="max-w-3xl mx-auto px-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-px bg-blue-600"></div>
+        <span class="text-sm font-medium text-blue-600">Privacy</span>
+      </div>
+      <h1 class="mt-3 text-3xl md:text-5xl font-bold tracking-tight">
+        プライバシーポリシー
+      </h1>
+      <p class="mt-3 text-sm text-zinc-500">最終更新日: 2026 年 5 月 5 日</p>
+
+      <div class="mt-12 space-y-10 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+        <section>
+          <h2 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
+            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+            1. 基本方針
+          </h2>
+          <p>
+            当サイト（<strong>tunagaru.dev</strong>、以下「本サイト」）は、たかし（以下「運営者」）が運営しています。本サイトは、利用者のプライバシーを尊重し、「個人情報の保護に関する法律」および関連法令・ガイドラインを遵守します。
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
+            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+            2. 取得する情報
+          </h2>
+          <p>本サイトは、お問い合わせフォームから以下の情報を取得します。</p>
+          <ul class="mt-3 list-disc pl-6 space-y-1">
+            <li>お名前</li>
+            <li>メールアドレス</li>
+            <li>会社名 / 屋号（任意）</li>
+            <li>ご相談内容のカテゴリ</li>
+            <li>メッセージ本文</li>
+          </ul>
+          <p class="mt-3">
+            また、サイト運営に必要な範囲で、アクセス元 IP アドレス・ユーザーエージェント等の情報を、ホスティング事業者を経由して一時的に取得する場合があります。
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
+            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+            3. 利用目的
+          </h2>
+          <p>取得した情報は、以下の目的でのみ利用します。</p>
+          <ul class="mt-3 list-disc pl-6 space-y-1">
+            <li>お問い合わせへのご返信</li>
+            <li>ご依頼内容の検討・お見積もり提示</li>
+            <li>サービス提供時のご連絡</li>
+            <li>本サイトの不正利用防止およびセキュリティ確保</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
+            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+            4. 第三者への提供
+          </h2>
+          <p>
+            運営者は、法令に基づく場合および利用者ご本人の同意がある場合を除き、取得した個人情報を第三者に提供することはありません。
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
+            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+            5. 利用する外部サービス
+          </h2>
+          <p>本サイトは、以下の外部サービスを利用しています。各サービスにおける情報の取り扱いは、各事業者が定めるプライバシーポリシーに従います。</p>
+          <ul class="mt-4 space-y-3">
+            <li class="rounded-lg border border-zinc-200 dark:border-zinc-800 p-4">
+              <div class="font-semibold text-zinc-900 dark:text-white">Cloudflare Pages（ホスティング・CDN）</div>
+              <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">アクセス元 IP アドレス・通信ログをセキュリティ目的で処理します。</div>
+            </li>
+            <li class="rounded-lg border border-zinc-200 dark:border-zinc-800 p-4">
+              <div class="font-semibold text-zinc-900 dark:text-white">Cloudflare Turnstile（ボット対策）</div>
+              <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">フォーム送信時に、自動化された不正アクセスでないかを判定するため、最小限のセッション情報を一時的に処理します。</div>
+            </li>
+            <li class="rounded-lg border border-zinc-200 dark:border-zinc-800 p-4">
+              <div class="font-semibold text-zinc-900 dark:text-white">Resend（メール送信代行）</div>
+              <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">お問い合わせ内容を運営者に届けるための送信処理に利用します。</div>
+            </li>
+            <li class="rounded-lg border border-zinc-200 dark:border-zinc-800 p-4">
+              <div class="font-semibold text-zinc-900 dark:text-white">Google Fonts（Web フォント配信）</div>
+              <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">フォントファイルを配信する目的で、利用者の IP アドレス等が Google に送信されます。</div>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
+            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+            6. Cookie および類似技術
+          </h2>
+          <p>
+            本サイトは、現時点でアクセス解析・広告目的の追跡 Cookie を使用していません。Cloudflare Turnstile による不正アクセス検知のため、必要最小限のセッション情報を一時的に処理する場合があります。
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
+            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+            7. 保管期間
+          </h2>
+          <p>
+            お問い合わせフォームから取得した情報は、ご返信および案件遂行に必要な期間のみ保管します。案件完了後または最後のやり取りから 2 年が経過した情報は、順次削除します。
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
+            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+            8. 開示・訂正・削除のご請求
+          </h2>
+          <p>
+            ご本人からの個人情報の開示・訂正・利用停止・削除のご請求につきましては、お問い合わせフォームよりご連絡ください。本人確認のうえ、合理的な期間内に対応いたします。
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
+            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+            9. ポリシーの改定
+          </h2>
+          <p>
+            本ポリシーは、必要に応じて改定する場合があります。重要な変更がある場合は、本サイト上で告知します。改定後の内容は、本サイトに掲載した時点で効力を生じます。
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
+            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+            10. お問い合わせ
+          </h2>
+          <p>
+            本ポリシーに関するお問い合わせは、
+            <a href="/#contact" class="text-blue-600 hover:underline">お問い合わせフォーム</a>
+            よりご連絡ください。
+          </p>
+        </section>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600 transition-colors"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          ホームに戻る
+        </a>
+        <a
+          href="/terms"
+          class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-blue-600 transition-colors"
+        >
+          利用規約を見る
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>
