@@ -9,3 +9,10 @@ FROM_EMAIL=onboarding@resend.dev
 # 未設定の場合 Turnstile による検証はスキップされます
 PUBLIC_TURNSTILE_SITE_KEY=
 TURNSTILE_SECRET_KEY=
+
+# 居酒屋向け LINE公式ガチャ（functions/api/line-webhook.ts）
+# LINE Developers Console > プロバイダー > Messaging API チャネル から取得
+LINE_CHANNEL_SECRET=
+LINE_CHANNEL_ACCESS_TOKEN=
+# 任意：返信に表示する店名（未設定なら「居酒屋たかし」）
+GACHA_SHOP_NAME=居酒屋たかし

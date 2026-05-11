@@ -1,0 +1,295 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import { PRIZES, TIER_LABEL, probabilityPercent } from "../lib/gacha";
+---
+
+<Layout
+  title="居酒屋向け LINE公式ガチャ デモ | たかし"
+  description="居酒屋の公式LINEで使えるガチャシステムのブラウザデモ。実際の Bot と同じ抽選ロジックでお試しいただけます。"
+>
+  <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-white/70 dark:bg-black/60 border-b border-zinc-200/60 dark:border-zinc-800/60">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="font-bold tracking-tight text-lg flex items-center gap-1">
+        たかし<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+      </a>
+      <a
+        href="/projects/izakaya-line-gacha"
+        class="inline-flex items-center gap-1.5 text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white transition-colors"
+      >
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        プロジェクト詳細
+      </a>
+    </div>
+  </header>
+
+  <main class="pt-24 pb-16 md:pt-32">
+    <!-- Hero -->
+    <section class="relative overflow-hidden">
+      <div aria-hidden="true" class="absolute -top-24 -left-32 w-[28rem] h-[28rem] bg-rose-400/25 dark:bg-rose-500/15 rounded-full blur-3xl -z-10 animate-blob"></div>
+      <div aria-hidden="true" class="absolute top-32 -right-32 w-[26rem] h-[26rem] bg-amber-400/25 dark:bg-amber-500/15 rounded-full blur-3xl -z-10 animate-blob-delayed"></div>
+
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 dark:bg-green-950/40 text-green-700 dark:text-green-300 text-xs font-medium ring-1 ring-green-200 dark:ring-green-900">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+          LINE公式アカウント連携
+        </div>
+        <h1 class="mt-4 text-4xl md:text-5xl font-bold tracking-tight leading-[1.15]">
+          🎰 居酒屋ガチャ デモ
+        </h1>
+        <p class="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          実際のLINE Bot と同じ抽選ロジックで動作するデモです。<br class="hidden sm:inline" />
+          ボタンを押して、本日の当たり賞品を引いてみてください。
+        </p>
+      </div>
+    </section>
+
+    <!-- Gacha card -->
+    <section class="mt-10">
+      <div class="max-w-md mx-auto px-6">
+        <div
+          id="gacha-stage"
+          class="relative aspect-[3/4] rounded-3xl bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-900 dark:to-zinc-800 ring-1 ring-zinc-200/80 dark:ring-zinc-800 shadow-2xl shadow-zinc-500/20 overflow-hidden"
+        >
+          <!-- Idle / Result content gets injected here -->
+          <div id="gacha-content" class="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+            <div class="text-7xl mb-4 animate-bounce-slow">🍻</div>
+            <div class="text-zinc-500 dark:text-zinc-400 text-sm">タップしてガチャを引いてください</div>
+          </div>
+
+          <!-- Spinner overlay -->
+          <div id="gacha-spinner" class="absolute inset-0 hidden items-center justify-center bg-white/80 dark:bg-black/70 backdrop-blur-sm">
+            <div class="flex flex-col items-center gap-4">
+              <div class="text-6xl animate-spin-emoji">🎰</div>
+              <div class="text-sm font-semibold text-zinc-700 dark:text-zinc-300">抽選中…</div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          id="gacha-btn"
+          type="button"
+          class="mt-6 w-full px-6 py-4 rounded-2xl bg-gradient-to-r from-rose-500 via-pink-500 to-amber-500 text-white text-lg font-bold shadow-xl shadow-rose-500/30 hover:shadow-2xl hover:shadow-rose-500/50 hover:-translate-y-0.5 active:translate-y-0 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          🎰 ガチャを引く
+        </button>
+
+        <button
+          id="gacha-reset"
+          type="button"
+          class="hidden mt-3 w-full px-6 py-3 rounded-2xl border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 font-medium hover:bg-white dark:hover:bg-zinc-900 transition-colors"
+        >
+          もう一度引く
+        </button>
+
+        <p class="mt-4 text-xs text-zinc-500 text-center">
+          ※ 本番運用では「1人1日1回まで」など Workers KV による制限を設定可能です。
+        </p>
+      </div>
+    </section>
+
+    <!-- Probability table -->
+    <section class="mt-20">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-px bg-blue-600"></div>
+          <span class="text-sm font-medium text-blue-600">Prize lineup</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">賞品 ＆ 当選確率</h2>
+        <p class="mt-3 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          賞品ラインナップと当選確率は、設定ファイル (<code class="text-xs px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800">src/lib/gacha.ts</code>) を 1 箇所書き換えるだけで自由に変更できます。
+        </p>
+
+        <div class="mt-6 grid sm:grid-cols-2 gap-3">
+          {PRIZES.map((p) => (
+            <div class={`p-4 rounded-2xl bg-gradient-to-br ${p.gradient} text-zinc-900 ring-1 ring-white/40 shadow-md`}>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-2">
+                  <span class="text-2xl">{p.emoji}</span>
+                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-white/80 text-zinc-700 uppercase tracking-wider">
+                    {p.tier}
+                  </span>
+                </div>
+                <span class="text-xs font-semibold text-zinc-800 bg-white/70 px-2 py-0.5 rounded-full">
+                  {probabilityPercent(p)}%
+                </span>
+              </div>
+              <div class="mt-2 font-bold leading-tight">{p.name}</div>
+              <div class="mt-1 text-xs text-zinc-700 leading-snug">{p.description}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture summary -->
+    <section class="mt-20">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-px bg-blue-600"></div>
+          <span class="text-sm font-medium text-blue-600">How it works</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">仕組み</h2>
+
+        <ol class="mt-6 space-y-4">
+          <li class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm flex items-center justify-center">1</div>
+            <div>
+              <div class="font-semibold">お客様が公式LINEに「ガチャ」と送信</div>
+              <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                来店時に貼ったQRコードから友だち追加。リッチメニューの「🎰 ガチャを引く」ボタンや、テキスト入力でガチャ抽選が始まります。
+              </div>
+            </div>
+          </li>
+          <li class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm flex items-center justify-center">2</div>
+            <div>
+              <div class="font-semibold">Cloudflare Workers が Webhook を受信・抽選</div>
+              <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                LINE Messaging API の署名検証 (HMAC-SHA256) を行い、重み付けされた抽選を実行。Workers KV にユーザーID×日付で記録し「1日1回」を担保します。
+              </div>
+            </div>
+          </li>
+          <li class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm flex items-center justify-center">3</div>
+            <div>
+              <div class="font-semibold">引換コード付き Flex Message で即時リプライ</div>
+              <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                当選結果と 8 桁の引換コードを LINE のリッチカードで返信。お客様はその画面をスタッフに見せるだけで賞品と引換できます。
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mt-20">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">
+          自店舗向けにカスタマイズしたい
+        </h2>
+        <p class="mt-3 text-zinc-600 dark:text-zinc-400">
+          賞品ラインナップ・当選確率・1回の制限・引換フローまで、お店ごとに調整できます。お気軽にご相談ください。
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3 justify-center">
+          <a
+            href="/#contact"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 font-medium shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/50 hover:-translate-y-0.5 transition-all"
+          >
+            お問い合わせ
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a
+            href="/projects/izakaya-line-gacha"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-700 hover:bg-white dark:hover:bg-zinc-900 transition-colors font-medium"
+          >
+            プロジェクト詳細
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  @keyframes bounceSlow {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
+  }
+  .animate-bounce-slow {
+    animation: bounceSlow 2.4s ease-in-out infinite;
+  }
+
+  @keyframes spinEmoji {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .animate-spin-emoji {
+    animation: spinEmoji 0.6s linear infinite;
+    display: inline-block;
+  }
+
+  @keyframes resultPop {
+    0%   { opacity: 0; transform: scale(0.6) rotate(-6deg); }
+    60%  { opacity: 1; transform: scale(1.06) rotate(2deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0); }
+  }
+  .animate-result-pop {
+    animation: resultPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+</style>
+
+<script>
+  import { rollPrize, generateCouponCode, TIER_LABEL, type Prize } from "../lib/gacha";
+
+  const stage = document.getElementById("gacha-stage")!;
+  const content = document.getElementById("gacha-content")!;
+  const spinner = document.getElementById("gacha-spinner")!;
+  const btn = document.getElementById("gacha-btn") as HTMLButtonElement;
+  const resetBtn = document.getElementById("gacha-reset") as HTMLButtonElement;
+
+  function showSpinner(show: boolean) {
+    if (show) {
+      spinner.classList.remove("hidden");
+      spinner.classList.add("flex");
+    } else {
+      spinner.classList.add("hidden");
+      spinner.classList.remove("flex");
+    }
+  }
+
+  function renderResult(prize: Prize, coupon: string) {
+    const tierLabel = TIER_LABEL[prize.tier];
+    stage.className = `relative aspect-[3/4] rounded-3xl bg-gradient-to-br ${prize.gradient} ring-4 ring-white/60 shadow-2xl shadow-rose-500/30 overflow-hidden`;
+    content.innerHTML = `
+      <div class="animate-result-pop w-full">
+        <div class="text-xs font-bold uppercase tracking-widest text-white/90 drop-shadow">${tierLabel}</div>
+        <div class="text-7xl mt-3 drop-shadow-lg">${prize.emoji}</div>
+        <div class="mt-4 text-2xl font-bold text-zinc-900 drop-shadow-sm leading-tight px-2">${prize.name}</div>
+        <div class="mt-2 text-xs text-zinc-800/90 leading-relaxed px-3">${prize.description}</div>
+        <div class="mt-5 inline-block px-4 py-2 rounded-xl bg-white/95 ring-1 ring-white/80 shadow">
+          <div class="text-[10px] text-zinc-500 font-semibold tracking-widest">引換コード</div>
+          <div class="text-lg font-bold tracking-widest text-zinc-900">${coupon}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderIdle() {
+    stage.className = "relative aspect-[3/4] rounded-3xl bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-900 dark:to-zinc-800 ring-1 ring-zinc-200/80 dark:ring-zinc-800 shadow-2xl shadow-zinc-500/20 overflow-hidden";
+    content.innerHTML = `
+      <div class="text-7xl mb-4 animate-bounce-slow">🍻</div>
+      <div class="text-zinc-500 dark:text-zinc-400 text-sm">タップしてガチャを引いてください</div>
+    `;
+  }
+
+  async function play() {
+    btn.disabled = true;
+    resetBtn.classList.add("hidden");
+    showSpinner(true);
+
+    await new Promise((r) => setTimeout(r, 1400));
+
+    const prize = rollPrize();
+    const coupon = generateCouponCode();
+
+    showSpinner(false);
+    renderResult(prize, coupon);
+
+    btn.classList.add("hidden");
+    resetBtn.classList.remove("hidden");
+  }
+
+  function reset() {
+    renderIdle();
+    btn.disabled = false;
+    btn.classList.remove("hidden");
+    resetBtn.classList.add("hidden");
+  }
+
+  btn.addEventListener("click", play);
+  resetBtn.addEventListener("click", reset);
+</script>

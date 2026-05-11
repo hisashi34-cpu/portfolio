@@ -13,9 +13,12 @@ portfolio/
 ├── src/
 │   ├── components/      # Header, Hero, About, Skills, Services, Portfolio, Contact, Footer
 │   ├── layouts/         # ベースレイアウト
+│   ├── lib/gacha.ts     # 居酒屋ガチャの賞品テーブル / 抽選ロジック（Bot とデモで共有）
 │   ├── pages/index.astro
+│   ├── pages/gacha-demo.astro  # 居酒屋ガチャのブラウザデモ
 │   └── styles/global.css
-├── functions/api/contact.ts   # Cloudflare Pages Function（フォーム → Resend → Gmail）
+├── functions/api/contact.ts        # Cloudflare Pages Function（フォーム → Resend → Gmail）
+├── functions/api/line-webhook.ts   # 居酒屋向け LINE公式ガチャの Webhook
 ├── public/              # 静的ファイル（favicon等）
 ├── astro.config.mjs
 ├── wrangler.toml
@@ -124,6 +127,72 @@ Cloudflare Pages → 作成したプロジェクト → **Settings** → **Envir
 ### 8. 独自ドメインの割当
 
 Cloudflare Pages → プロジェクト → **Custom domains** → **Set up a custom domain** で独自ドメインを入力。Cloudflare DNS で管理しているドメインなら自動で DNS レコードが設定されます。
+
+---
+
+## 居酒屋向け LINE公式ガチャのセットアップ
+
+公式LINEで動くガチャ Bot を Cloudflare Pages 上で動かす手順です。
+
+### 1. LINE Messaging API チャネルを作成
+
+1. [LINE Developers Console](https://developers.line.biz/console/) にログインし、プロバイダー → **Messaging API チャネル** を新規作成
+2. 「Messaging API 設定」タブで以下を取得：
+   - **Channel secret**
+   - **Channel access token (long-lived)** ※「発行」ボタンで生成
+3. 「応答メッセージ」「あいさつメッセージ」は **オフ** にしておく（ガチャ Bot の返信と被るため）
+4. 「Webhook URL」に `https://<your-domain>/api/line-webhook` を設定し、**Use webhook を ON**
+
+### 2. Cloudflare Pages の環境変数を追加
+
+Settings → **Environment variables** で以下を Production / Preview の両方に設定します。
+
+| 変数名                       | 値                                | 説明                                         |
+| ---------------------------- | --------------------------------- | -------------------------------------------- |
+| `LINE_CHANNEL_SECRET`        | `xxxxxxxx...`                     | LINE Channel secret                          |
+| `LINE_CHANNEL_ACCESS_TOKEN`  | `xxxxxxxx...`                     | LINE Channel access token (long-lived)       |
+| `GACHA_SHOP_NAME`            | `居酒屋たかし` 等                  | リプライに表示する店名（任意）                |
+
+### 3. 1日1回制限を有効化（任意・推奨）
+
+Workers KV をひとつ作って `GACHA_KV` というバインディング名で Pages に紐付けると、`userId × 日付` 単位で 1 日 1 回の制限が自動で有効化されます。
+
+```bash
+# KV namespace を作成
+npx wrangler kv namespace create GACHA_KV
+```
+
+Cloudflare ダッシュボード → Pages の対象プロジェクト → **Settings → Functions → KV namespace bindings** で
+`Variable name = GACHA_KV` として作成した namespace を選択し、**保存 → Re-deploy** で反映。
+
+> 設定しなくても Webhook は動作しますが、1人が連打して引けてしまうので店舗運用では設定推奨。
+
+### 4. 賞品ラインナップのカスタマイズ
+
+賞品名・当選確率・絵文字・色は `src/lib/gacha.ts` の `PRIZES` 配列を編集するだけで反映されます。
+
+```ts
+{
+  id: "ssr-meal-5000",
+  tier: "SSR",
+  name: "5,000円分 お食事券",
+  description: "次回ご来店時にお会計から5,000円をサービス。",
+  weight: 10,                                  // 抽選ウェイト（合計1000）
+  emoji: "👑",
+  gradient: "from-amber-300 to-orange-400",    // デモカードのグラデーション
+  color: "#F59E0B",                            // LINE Flex Message ヘッダー色
+},
+```
+
+### 5. 動作確認
+
+1. Cloudflare Pages にデプロイ後、LINE Developers Console の Webhook 設定で **「検証」** ボタンを押し `200 OK` になることを確認
+2. QRコードから自分のLINEで友だち追加（あいさつメッセージが届く）
+3. トーク画面で「ガチャ」と送信 → 結果カードが返ってくれば成功
+
+### 6. ブラウザでのデモ
+
+開発時の動作確認や、お客様への提案資料には `/gacha-demo` をご利用ください。実際の Bot と同じ抽選ロジックが動きます。
 
 ---
 

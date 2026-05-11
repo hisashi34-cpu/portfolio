@@ -1,3 +1,20 @@
 name = "portfolio"
 compatibility_date = "2025-01-01"
 pages_build_output_dir = "dist"
+
+# ─────────────────────────────────────────────────────────────
+# 居酒屋向け LINE公式ガチャ（functions/api/line-webhook.ts）
+# 「1日1回まで」の制限を有効化するには、Workers KV namespace を
+# 作成してこのファイル末尾の kv_namespaces を有効化します。
+#
+#   npx wrangler kv namespace create GACHA_KV
+#
+# 出力された id を以下の `id = "..."` に貼り付けて、Production 設定として
+# Cloudflare ダッシュボード（Pages > Settings > Functions > KV namespace bindings）
+# にも `Variable name = GACHA_KV` で紐付けてください。
+# 設定しなくても Webhook 自体は動作しますが、1日1回制限が無効になります。
+# ─────────────────────────────────────────────────────────────
+
+# [[kv_namespaces]]
+# binding = "GACHA_KV"
+# id = "<your-kv-namespace-id>"

@@ -48,6 +48,38 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "izakaya-line-gacha",
+    title: "居酒屋向け LINE公式ガチャ",
+    category: "LINE連携 / 集客",
+    tagline: "公式LINEを「もう一度行きたい店」に変える、1日1回のお楽しみガチャ",
+    desc: "居酒屋の公式LINEで遊べるガチャシステム。リピーター獲得・客単価UP・LINE友だち増を同時に実現。",
+    longDesc:
+      "居酒屋の公式LINEに「ガチャ」を実装し、来店客が友だち追加 → トーク画面でガチャを引く → 当たった引換コードを店内でそのまま提示、という体験を提供します。お客様にはちょっとした楽しみとお得感を、お店には「次回も来店する理由」と LINE 友だち（=ハウスリスト）の増加をもたらす集客装置です。Cloudflare Workers 上で動くサーバーレス構成のため、月額固定費を限りなく低く保ったまま運用できます。",
+    tags: ["LINE Messaging API", "Cloudflare Workers", "リピーター施策"],
+    gradient: "from-pink-200 to-rose-200 dark:from-pink-900 dark:to-rose-900",
+    link: "/gacha-demo",
+    linkLabel: "ガチャを体験する",
+    year: "2026",
+    challenge:
+      "居酒屋の販促は紙のクーポンやスタンプカードに頼りがちで、「配ったあとの効果が見えない」「リピートに繋がっているか分からない」という悩みが常にありました。また、LINE 公式アカウントを開設してもメッセージ配信だけでは飽きられてしまい、ブロック率の上昇に悩む店舗も少なくありません。",
+    solution:
+      "公式LINEを「来店ごとに楽しめるガチャ」の場に変えることで、友だち追加 → 来店 → 再訪のループを設計しました。当選品は『生ビール1杯無料』『5,000円分お食事券』などお店側で自由に設計でき、ハズレでも次回使えるクーポンが必ず手に入るため、お客様の満足度を損なわずに来店動機を仕込めます。LINE 署名検証・1日1回制限・引換コード発行までを Cloudflare Workers で完結させ、運用コストを極小化しました。",
+    features: [
+      { title: "「ガチャ」と送るだけで抽選", desc: "リッチメニュー or テキスト入力でガチャ開始。来店客に余計な操作を一切させない。" },
+      { title: "重み付け抽選 ＋ Flex Message 結果通知", desc: "SSR〜MISS の 5 段階で抽選し、結果は引換コード入りリッチカードで即時リプライ。" },
+      { title: "1人1日1回の自動制限", desc: "Workers KV にユーザーID×日付で記録。連打や乱用を仕組みで防止。" },
+      { title: "引換コード発行", desc: "8桁の英数字コードを自動生成。お客様はスタッフに見せるだけで賞品と引換完了。" },
+      { title: "賞品テーブルは1ファイルで完結", desc: "賞品名・確率・絵文字・色を 1 箇所書き換えるだけで全画面に反映。シーズン替え・限定キャンペーンも即対応。" },
+      { title: "署名検証で改ざん防止", desc: "LINE Messaging API の x-line-signature を HMAC-SHA256 で検証。第三者からの偽 Webhook を拒否。" },
+    ],
+    techStack: ["LINE Messaging API", "Cloudflare Pages Functions", "Workers KV", "TypeScript", "Astro", "Tailwind CSS"],
+    results: [
+      { label: "運用コスト", value: "ほぼ無料枠" },
+      { label: "1日1回制限", value: "KV で自動化" },
+      { label: "賞品差し替え", value: "1ファイル" },
+    ],
+  },
+  {
     slug: "vehicle-log",
     title: "社用車走行日報",
     category: "業務SaaS",
