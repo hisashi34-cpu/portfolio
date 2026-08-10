@@ -1,69 +1,111 @@
 ---
+const menu = [
+  { href: "#services", label: "SERVICE", sub: "サービス内容" },
+  { href: "#portfolio", label: "WORKS", sub: "実績" },
+  { href: "#about", label: "ABOUT", sub: "事業概要" },
+  { href: "#news", label: "NEWS", sub: "お知らせ" },
+];
 ---
 
-<section id="top" class="relative pt-32 pb-24 md:pt-44 md:pb-32 overflow-hidden">
-  <!-- subtle background grid -->
-  <div class="absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]">
-    <div class="h-full w-full bg-[linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+<section id="top" class="relative pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden">
+  <!-- Hand-drawn gray circle (reference: yellow marker circle) -->
+  <svg aria-hidden="true" class="absolute -left-24 top-32 w-[340px] h-[420px] md:w-[420px] md:h-[520px] text-zinc-300 dark:text-zinc-700 -z-10" viewBox="0 0 300 380" fill="none">
+    <ellipse cx="150" cy="190" rx="130" ry="165" stroke="currentColor" stroke-width="14" transform="rotate(-8 150 190)" />
+  </svg>
+
+  <!-- Vertical handwritten script down the left edge -->
+  <div aria-hidden="true" class="hidden lg:block absolute left-10 top-40 script text-4xl text-zinc-800 dark:text-zinc-200 select-none" style="writing-mode: vertical-rl;">
+    ai systems &amp; websites
   </div>
 
-  <!-- soft gradient blobs -->
-  <div aria-hidden="true" class="absolute -top-24 -left-24 w-[32rem] h-[32rem] bg-blue-400/40 dark:bg-blue-500/25 rounded-full blur-3xl -z-10 animate-blob"></div>
-  <div aria-hidden="true" class="absolute top-32 -right-24 w-[28rem] h-[28rem] bg-sky-400/40 dark:bg-sky-500/25 rounded-full blur-3xl -z-10 animate-blob-delayed"></div>
-  <div aria-hidden="true" class="absolute -bottom-32 left-1/3 w-[26rem] h-[26rem] bg-cyan-400/30 dark:bg-cyan-500/20 rounded-full blur-3xl -z-10 animate-blob"></div>
+  <div class="max-w-[1200px] mx-auto px-6 md:px-10">
+    <div class="grid lg:grid-cols-[1fr_260px] gap-14 lg:gap-20 items-start">
 
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="fade-up">
-      <span class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        新規案件のご依頼を受付中
-      </span>
+      <!-- Center column -->
+      <div class="fade-up lg:pl-28">
+        <p class="border-l-2 border-zinc-900 dark:border-zinc-100 pl-5 text-[11px] leading-[1.9] tracking-[0.16em] uppercase font-semibold text-zinc-700 dark:text-zinc-300 max-w-md">
+          Web development / Business systems / LINE integration -
+          GAS, Firebase, Cloudflare / AI-OCR, Kintai, Expense apps /
+          Website design / MEO, Consulting
+        </p>
 
-      <h1 class="mt-6 text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
-        16 年の現場経験を、<br class="hidden sm:block" />
-        <span class="bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-400 bg-clip-text text-transparent">
-          AI で次の形へ。
-        </span>
-      </h1>
+        <h1 class="mt-10 text-4xl md:text-5xl lg:text-[3.4rem] font-bold tracking-tight leading-[1.5]">
+          <span class="marker">業務のAI化</span><br />
+          <span class="marker-invert">承ります</span>
+        </h1>
 
-      <p class="mt-6 text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        土木の現場で培った段取り力と、AI 時代の新しい武器。<br class="hidden md:block" />
-        中小企業の業務を AI と仕組みで再構築し、「明日から使える」形にしてお届けします。
-      </p>
+        <div class="mt-8 space-y-1 text-sm md:text-base leading-relaxed text-zinc-800 dark:text-zinc-200">
+          <p>現場を知る人間が、一から仕組みをつくる</p>
+          <p>フリーランス開発者</p>
+          <p class="text-[12px] tracking-[0.2em] uppercase text-zinc-500 pt-1">Tunagaru.dev</p>
+        </div>
 
-      <div class="mt-10 flex flex-wrap gap-3">
+        <button
+          id="share-btn"
+          class="mt-8 inline-flex items-center gap-2 border border-zinc-900 dark:border-zinc-100 px-4 py-2 text-[11px] font-bold tracking-[0.2em] uppercase hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors cursor-pointer"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+          <span class="share-label">Share</span>
+        </button>
+      </div>
+
+      <!-- Right menu column -->
+      <nav class="hidden lg:block pt-2">
+        <a href="#top" class="text-[13px] font-bold tracking-[0.18em] hover:opacity-60 transition-opacity">HOME</a>
+
+        <div class="mt-6 space-y-5">
+          {menu.map((m) => (
+            <a href={m.href} class="rule-row group text-zinc-900 dark:text-zinc-100">
+              <span class="text-[15px] font-bold tracking-[0.14em] group-hover:opacity-60 transition-opacity">{m.label}</span>
+              <span class="rule-line"></span>
+              <span class="text-[10px] text-zinc-500">{m.sub}</span>
+            </a>
+          ))}
+        </div>
+
         <a
           href="#contact"
-          class="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 font-medium shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/50 hover:-translate-y-0.5 transition-all"
+          class="mt-8 flex items-center justify-center bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 py-3.5 text-[13px] font-bold tracking-[0.2em] hover:bg-black dark:hover:bg-white transition-colors"
         >
-          <span class="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-400 opacity-0 group-hover:opacity-20 blur-md transition-opacity"></span>
-          お仕事のご依頼
-          <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          お問い合わせ
         </a>
-        <a
-          href="#portfolio"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors font-medium"
-        >
-          実績を見る
-        </a>
-      </div>
-
-      <div class="mt-16 flex items-center gap-8 text-sm text-zinc-500 dark:text-zinc-400">
-        <div>
-          <div class="text-2xl font-bold text-zinc-900 dark:text-white">16<span class="text-blue-600">+</span></div>
-          <div class="mt-1">年の現場経験</div>
-        </div>
-        <div class="w-px h-10 bg-zinc-200 dark:bg-zinc-800"></div>
-        <div>
-          <div class="text-2xl font-bold text-zinc-900 dark:text-white">5<span class="text-blue-600">+</span></div>
-          <div class="mt-1">業務 SaaS 実績</div>
-        </div>
-        <div class="w-px h-10 bg-zinc-200 dark:bg-zinc-800"></div>
-        <div>
-          <div class="text-2xl font-bold text-zinc-900 dark:text-white">100<span class="text-blue-600">%</span></div>
-          <div class="mt-1">パートナー志向</div>
-        </div>
-      </div>
+      </nav>
     </div>
+
+    <!-- Mobile menu (reference-style rows) -->
+    <nav class="lg:hidden mt-14 space-y-5">
+      {menu.map((m) => (
+        <a href={m.href} class="rule-row text-zinc-900 dark:text-zinc-100">
+          <span class="text-[15px] font-bold tracking-[0.14em]">{m.label}</span>
+          <span class="rule-line"></span>
+          <span class="text-[10px] text-zinc-500">{m.sub}</span>
+        </a>
+      ))}
+      <a
+        href="#contact"
+        class="mt-4 flex items-center justify-center bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 py-3.5 text-[13px] font-bold tracking-[0.2em]"
+      >
+        お問い合わせ
+      </a>
+    </nav>
   </div>
 </section>
+
+<script>
+  const btn = document.getElementById("share-btn");
+  const label = btn?.querySelector(".share-label");
+  btn?.addEventListener("click", async () => {
+    const data = { title: document.title, url: location.href };
+    try {
+      if (navigator.share) {
+        await navigator.share(data);
+      } else {
+        await navigator.clipboard.writeText(location.href);
+        if (label) {
+          label.textContent = "Copied!";
+          setTimeout(() => (label.textContent = "Share"), 1600);
+        }
+      }
+    } catch { /* user cancelled */ }
+  });
+</script>

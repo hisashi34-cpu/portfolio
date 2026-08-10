@@ -1,64 +1,16 @@
 ---
-const nav = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#services", label: "Services" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#contact", label: "Contact" },
-];
 ---
 
-<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-white/70 dark:bg-black/60 border-b border-zinc-200/60 dark:border-zinc-800/60">
-  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="#top" class="font-bold tracking-tight text-lg flex items-center gap-1">
-      たかし<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+<header class="fixed top-0 inset-x-0 z-50 bg-white/90 dark:bg-black/90 backdrop-blur">
+  <div class="max-w-[1200px] mx-auto px-6 md:px-10 h-14 md:h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-baseline gap-3">
+      <svg class="w-4 h-4 self-center" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 13l9-9 1.5 1.5L6 13h15l-2 2H4l-1-2z"/></svg>
+      <span class="text-[13px] font-bold tracking-[0.14em]">業務のAI化 × Web制作</span>
+      <span class="text-[11px] tracking-[0.2em] text-zinc-500 uppercase hidden sm:inline">Tunagaru.dev</span>
     </a>
 
-    <nav class="hidden md:flex items-center gap-8">
-      {nav.map((item) => (
-        <a
-          href={item.href}
-          class="text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white transition-colors"
-        >
-          {item.label}
-        </a>
-      ))}
-    </nav>
-
-    <a
-      href="#contact"
-      class="hidden md:inline-flex items-center gap-1 text-sm font-medium px-4 py-2 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 hover:opacity-90 transition-opacity"
-    >
+    <a href="#contact" class="text-[11px] font-bold tracking-[0.2em] border-b border-zinc-900 dark:border-zinc-100 pb-0.5 hover:opacity-60 transition-opacity">
       お問い合わせ
-      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
-
-    <button
-      id="menu-toggle"
-      class="md:hidden p-2 -mr-2 text-zinc-700 dark:text-zinc-200"
-      aria-label="メニューを開く"
-    >
-      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-    </button>
-  </div>
-
-  <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-200/60 dark:border-zinc-800/60 bg-white dark:bg-black">
-    <nav class="px-6 py-4 flex flex-col gap-3">
-      {nav.map((item) => (
-        <a href={item.href} class="text-zinc-700 dark:text-zinc-200 py-1">{item.label}</a>
-      ))}
-      <a href="#contact" class="mt-2 inline-flex justify-center items-center px-4 py-2 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-zinc-900">
-        お問い合わせ
-      </a>
-    </nav>
   </div>
 </header>
-
-<script>
-  const toggle = document.getElementById("menu-toggle");
-  const menu = document.getElementById("mobile-menu");
-  toggle?.addEventListener("click", () => menu?.classList.toggle("hidden"));
-  menu?.querySelectorAll("a").forEach((a) =>
-    a.addEventListener("click", () => menu.classList.add("hidden"))
-  );
-</script>

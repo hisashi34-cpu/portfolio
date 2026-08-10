@@ -1,19 +1,35 @@
 ---
 const year = new Date().getFullYear();
+const menu = [
+  { href: "/#services", label: "SERVICE", sub: "サービス内容" },
+  { href: "/#portfolio", label: "WORKS", sub: "実績" },
+  { href: "/#about", label: "ABOUT", sub: "事業概要" },
+  { href: "/#news", label: "NEWS", sub: "お知らせ" },
+];
 ---
 
-<footer class="border-t border-zinc-200/60 dark:border-zinc-800/60 py-10">
-  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5 text-sm text-zinc-500">
-    <div>
-      © {year} たかし. All rights reserved.
+<footer class="border-t border-zinc-200 dark:border-zinc-800 py-14 md:py-20">
+  <div class="max-w-[1000px] mx-auto px-6 md:px-10">
+    <div class="grid md:grid-cols-[200px_1fr] gap-10 md:gap-16 items-start">
+      <div class="text-[13px] font-bold tracking-[0.2em]">SERVICE MENU</div>
+
+      <div class="max-w-md space-y-5">
+        {menu.map((m) => (
+          <a href={m.href} class="rule-row text-zinc-900 dark:text-zinc-100 group">
+            <span class="text-[15px] font-bold tracking-[0.14em] group-hover:opacity-60 transition-opacity">{m.label}</span>
+            <span class="rule-line"></span>
+            <span class="text-[10px] text-zinc-500">{m.sub}</span>
+          </a>
+        ))}
+      </div>
     </div>
-    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-      <a href="/#about" class="hover:text-zinc-900 dark:hover:text-white transition">About</a>
-      <a href="/#services" class="hover:text-zinc-900 dark:hover:text-white transition">Services</a>
-      <a href="/#contact" class="hover:text-zinc-900 dark:hover:text-white transition">Contact</a>
-      <span class="text-zinc-300 dark:text-zinc-700">|</span>
-      <a href="/privacy" class="hover:text-zinc-900 dark:hover:text-white transition">プライバシーポリシー</a>
-      <a href="/terms" class="hover:text-zinc-900 dark:hover:text-white transition">利用規約</a>
+
+    <div class="mt-14 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+      <div>業務のAI化 × Web制作 たかし ｜ © {year} tunagaru.dev</div>
+      <div class="flex gap-6">
+        <a href="/privacy" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition">プライバシーポリシー</a>
+        <a href="/terms" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition">利用規約</a>
+      </div>
     </div>
   </div>
 </footer>

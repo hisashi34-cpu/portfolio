@@ -16,7 +16,7 @@ interface Props {
 
 const { project } = Astro.props;
 
-// Other projects for "次の案件 / 他の事例" links at the bottom
+// Other projects for "他の事例" links at the bottom
 const others = projects.filter((p) => p.slug !== project.slug);
 ---
 
@@ -24,192 +24,187 @@ const others = projects.filter((p) => p.slug !== project.slug);
   title={`${project.title} | たかし`}
   description={project.desc}
 >
-  <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-white/70 dark:bg-black/60 border-b border-zinc-200/60 dark:border-zinc-800/60">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="font-bold tracking-tight text-lg flex items-center gap-1">
-        たかし<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+  <header class="fixed top-0 inset-x-0 z-50 bg-white/85 dark:bg-black/85 backdrop-blur border-b border-zinc-200 dark:border-zinc-800">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-10 h-16 md:h-20 flex items-center justify-between">
+      <a href="/" class="font-bold tracking-tight text-base md:text-lg">
+        たかし
       </a>
       <a
         href="/#portfolio"
-        class="inline-flex items-center gap-1.5 text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white transition-colors"
+        class="inline-flex items-center gap-2 text-[12px] font-semibold tracking-[0.15em] uppercase text-zinc-700 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors"
       >
-        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Portfolio に戻る
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Works
       </a>
     </div>
   </header>
 
   <!-- Hero -->
-  <section class="relative pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden">
-    <div aria-hidden="true" class="absolute -top-24 -left-32 w-[28rem] h-[28rem] bg-blue-400/25 dark:bg-blue-500/15 rounded-full blur-3xl -z-10 animate-blob"></div>
-    <div aria-hidden="true" class="absolute top-32 -right-32 w-[26rem] h-[26rem] bg-sky-400/25 dark:bg-sky-500/15 rounded-full blur-3xl -z-10 animate-blob-delayed"></div>
-
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="flex items-center gap-3 mb-3 text-sm">
-        <a href="/" class="text-zinc-500 hover:text-blue-600 transition-colors">Home</a>
+  <section class="pt-28 md:pt-40 pb-12 md:pb-16">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-10">
+      <div class="flex items-center gap-3 text-[11px] tracking-[0.18em] uppercase text-zinc-500">
+        <a href="/" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Home</a>
         <span class="text-zinc-300 dark:text-zinc-700">/</span>
-        <a href="/#portfolio" class="text-zinc-500 hover:text-blue-600 transition-colors">Portfolio</a>
+        <a href="/#portfolio" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Works</a>
         <span class="text-zinc-300 dark:text-zinc-700">/</span>
-        <span class="text-zinc-700 dark:text-zinc-300">{project.title}</span>
+        <span class="text-zinc-900 dark:text-zinc-100">{project.title}</span>
       </div>
 
-      <span class="inline-block text-xs font-medium px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/50 text-blue-600 ring-1 ring-blue-200 dark:ring-blue-900">
-        {project.category}
-      </span>
-      <h1 class="mt-4 text-4xl md:text-6xl font-bold tracking-tight leading-[1.1]">
-        {project.title}
-      </h1>
-      {project.tagline && (
-        <p class="mt-4 text-xl md:text-2xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
-          {project.tagline}
-        </p>
-      )}
+      <div class="mt-10 grid md:grid-cols-[180px_1fr] gap-8 md:gap-14 items-start">
+        <span class="eyebrow">{project.category}</span>
+        <div>
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+            {project.title}
+          </h1>
+          {project.tagline && (
+            <p class="mt-6 text-lg md:text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-3xl">
+              {project.tagline}
+            </p>
+          )}
 
-      <div class="mt-6 flex flex-wrap gap-3 items-center">
-        {project.link && (
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 font-medium shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/50 hover:-translate-y-0.5 transition-all"
-          >
-            <span class="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-400 opacity-0 group-hover:opacity-20 blur-md transition-opacity"></span>
-            {project.linkLabel ?? "ライブデモを見る"}
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l10-10M7 7h10v10"/></svg>
-          </a>
-        )}
-        {project.year && (
-          <span class="text-sm text-zinc-500">公開年: {project.year}</span>
-        )}
+          <div class="mt-8 flex flex-wrap gap-4 items-center">
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-3 px-7 py-3.5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-semibold tracking-[0.15em] uppercase hover:bg-black dark:hover:bg-white transition-colors"
+              >
+                {project.linkLabel ?? "Live Demo"}
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l10-10M7 7h10v10"/></svg>
+              </a>
+            )}
+            {project.year && (
+              <span class="text-[11px] tracking-[0.2em] uppercase text-zinc-500">Year {project.year}</span>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Hero media -->
-  <section class="px-6">
-    <div class="max-w-5xl mx-auto">
-      <div class={`relative aspect-[16/10] rounded-3xl bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden ring-1 ring-zinc-200/60 dark:ring-zinc-800/60 shadow-2xl shadow-blue-500/10`}>
-        {project.video && project.landscape ? (
-          <video
-            src={project.video}
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            class="absolute inset-0 w-full h-full object-cover"
-          ></video>
-        ) : project.video ? (
-          <video
-            src={project.video}
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            class="h-[88%] w-auto rounded-2xl ring-4 ring-white/50 dark:ring-zinc-900/40 shadow-2xl"
-          ></video>
-        ) : project.image ? (
-          <img
-            src={project.image}
-            alt={project.title}
-            loading="lazy"
-            class="absolute inset-0 w-full h-full object-cover"
-          />
-        ) : (
-          <span class="text-zinc-500 dark:text-zinc-400">[ サムネイル ]</span>
-        )}
-      </div>
+  <!-- Hero media (full-bleed) -->
+  <section>
+    <div class={`relative w-full aspect-[16/9] md:aspect-[16/8] bg-gradient-to-br ${project.gradient} overflow-hidden`}>
+      {project.video && project.landscape ? (
+        <video
+          src={project.video}
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          class="absolute inset-0 w-full h-full object-cover"
+        ></video>
+      ) : project.video ? (
+        <video
+          src={project.video}
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          class="h-[88%] w-auto mx-auto mt-[6%] shadow-2xl"
+        ></video>
+      ) : project.image ? (
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="eager"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+      ) : (
+        <span class="absolute inset-0 flex items-center justify-center text-zinc-500 dark:text-zinc-400 text-xs tracking-[0.2em] uppercase">No Image</span>
+      )}
     </div>
   </section>
 
   <!-- Body -->
-  <section class="py-16 md:py-24">
-    <div class="max-w-3xl mx-auto px-6 space-y-12">
+  <section class="py-20 md:py-32">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-10 space-y-20 md:space-y-28">
+
       {project.longDesc && (
-        <div>
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-8 h-px bg-blue-600"></div>
-            <span class="text-sm font-medium text-blue-600">Overview</span>
+        <div class="grid md:grid-cols-[180px_1fr] gap-8 md:gap-14 items-start">
+          <span class="eyebrow">Overview</span>
+          <div>
+            <h2 class="text-2xl md:text-4xl font-bold tracking-tight leading-[1.2]">概要</h2>
+            <p class="mt-6 max-w-3xl text-base md:text-lg leading-loose text-zinc-700 dark:text-zinc-300">
+              {project.longDesc}
+            </p>
           </div>
-          <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-4">概要</h2>
-          <p class="text-zinc-700 dark:text-zinc-300 leading-relaxed text-lg">
-            {project.longDesc}
-          </p>
         </div>
       )}
 
       {project.challenge && (
-        <div>
-          <h3 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
-            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
-            課題
-          </h3>
-          <p class="text-zinc-700 dark:text-zinc-300 leading-relaxed">{project.challenge}</p>
+        <div class="grid md:grid-cols-[180px_1fr] gap-8 md:gap-14 items-start">
+          <span class="eyebrow">Challenge</span>
+          <div>
+            <h3 class="text-2xl md:text-3xl font-bold tracking-tight leading-[1.3]">課題</h3>
+            <p class="mt-6 max-w-3xl leading-loose text-zinc-700 dark:text-zinc-300">{project.challenge}</p>
+          </div>
         </div>
       )}
 
       {project.solution && (
-        <div>
-          <h3 class="text-xl font-bold text-zinc-900 dark:text-white mb-3 flex items-center gap-3">
-            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
-            アプローチ
-          </h3>
-          <p class="text-zinc-700 dark:text-zinc-300 leading-relaxed">{project.solution}</p>
+        <div class="grid md:grid-cols-[180px_1fr] gap-8 md:gap-14 items-start">
+          <span class="eyebrow">Approach</span>
+          <div>
+            <h3 class="text-2xl md:text-3xl font-bold tracking-tight leading-[1.3]">アプローチ</h3>
+            <p class="mt-6 max-w-3xl leading-loose text-zinc-700 dark:text-zinc-300">{project.solution}</p>
+          </div>
         </div>
       )}
 
       {project.features && project.features.length > 0 && (
-        <div>
-          <h3 class="text-xl font-bold text-zinc-900 dark:text-white mb-4 flex items-center gap-3">
-            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
-            主な機能
-          </h3>
-          <ul class="space-y-3">
-            {project.features.map((f) => (
-              <li class="flex gap-3 p-4 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-                <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
-                <div>
-                  <div class="font-semibold text-zinc-900 dark:text-white">{f.title}</div>
-                  {f.desc && <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{f.desc}</div>}
-                </div>
-              </li>
-            ))}
-          </ul>
+        <div class="grid md:grid-cols-[180px_1fr] gap-8 md:gap-14 items-start">
+          <span class="eyebrow">Features</span>
+          <div>
+            <h3 class="text-2xl md:text-3xl font-bold tracking-tight leading-[1.3]">主な機能</h3>
+            <ul class="mt-8 divide-y divide-zinc-200 dark:divide-zinc-800 border-t border-b border-zinc-200 dark:border-zinc-800">
+              {project.features.map((f, idx) => (
+                <li class="grid grid-cols-[44px_1fr] gap-4 py-5">
+                  <div class="text-[11px] font-semibold tracking-[0.18em] uppercase text-zinc-500 tabular-nums pt-1">{String(idx + 1).padStart(2, "0")}</div>
+                  <div>
+                    <div class="font-semibold text-base md:text-lg text-zinc-900 dark:text-zinc-100">{f.title}</div>
+                    {f.desc && <div class="mt-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{f.desc}</div>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
 
       {project.techStack && project.techStack.length > 0 && (
-        <div>
-          <h3 class="text-xl font-bold text-zinc-900 dark:text-white mb-4 flex items-center gap-3">
-            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
-            技術スタック
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            {project.techStack.map((t) => (
-              <span class="text-sm px-3 py-1.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium">
-                {t}
-              </span>
-            ))}
+        <div class="grid md:grid-cols-[180px_1fr] gap-8 md:gap-14 items-start">
+          <span class="eyebrow">Stack</span>
+          <div>
+            <h3 class="text-2xl md:text-3xl font-bold tracking-tight leading-[1.3]">技術スタック</h3>
+            <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-base md:text-lg text-zinc-800 dark:text-zinc-200">
+              {project.techStack.map((t, idx) => (
+                <li class="flex items-center">
+                  {idx > 0 && <span class="text-zinc-300 dark:text-zinc-700 mr-6">/</span>}
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       )}
 
       {project.results && project.results.length > 0 && (
-        <div>
-          <h3 class="text-xl font-bold text-zinc-900 dark:text-white mb-4 flex items-center gap-3">
-            <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
-            成果
-          </h3>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {project.results.map((r) => (
-              <div class="p-5 rounded-xl bg-gradient-to-br from-blue-50 to-sky-50 dark:from-blue-950/40 dark:to-sky-950/40 border border-blue-100 dark:border-blue-900/40">
-                <div class="text-2xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">
-                  {r.value}
+        <div class="grid md:grid-cols-[180px_1fr] gap-8 md:gap-14 items-start">
+          <span class="eyebrow">Results</span>
+          <div>
+            <h3 class="text-2xl md:text-3xl font-bold tracking-tight leading-[1.3]">成果</h3>
+            <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 border-t border-zinc-200 dark:border-zinc-800">
+              {project.results.map((r) => (
+                <div class="p-6 md:p-8 border-b sm:border-r last:sm:border-r-0 border-zinc-200 dark:border-zinc-800">
+                  <div class="text-3xl md:text-4xl font-bold tracking-tight tabular-nums">{r.value}</div>
+                  <div class="mt-2 text-[11px] tracking-[0.18em] uppercase text-zinc-500">{r.label}</div>
                 </div>
-                <div class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{r.label}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -217,68 +212,71 @@ const others = projects.filter((p) => p.slug !== project.slug);
   </section>
 
   <!-- CTA -->
-  <section class="py-12 md:py-16 border-t border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50 dark:bg-zinc-950/50">
-    <div class="max-w-3xl mx-auto px-6 text-center">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight">
-        類似のシステム開発をご検討ですか？
-      </h2>
-      <p class="mt-3 text-zinc-600 dark:text-zinc-400">
-        現場の課題に沿った仕組みづくりをご支援します。お気軽にご相談ください。
-      </p>
-      <div class="mt-6 flex flex-wrap gap-3 justify-center">
-        <a
-          href="/#contact"
-          class="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 font-medium shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/50 hover:-translate-y-0.5 transition-all"
-        >
-          <span class="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-400 opacity-0 group-hover:opacity-20 blur-md transition-opacity"></span>
-          お問い合わせ
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <a
-          href="/#portfolio"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-700 hover:bg-white dark:hover:bg-zinc-900 transition-colors font-medium"
-        >
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          Portfolio に戻る
-        </a>
+  <section class="py-16 md:py-24 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-10 grid md:grid-cols-[180px_1fr] gap-8 md:gap-14 items-start">
+      <span class="eyebrow">Next</span>
+      <div>
+        <h2 class="text-2xl md:text-4xl font-bold tracking-tight leading-[1.3]">
+          類似のシステム開発を<br class="hidden md:block" />ご検討ですか？
+        </h2>
+        <p class="mt-4 max-w-2xl leading-loose text-zinc-700 dark:text-zinc-300">
+          現場の課題に沿った仕組みづくりをご支援します。お気軽にご相談ください。
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a
+            href="/#contact"
+            class="inline-flex items-center gap-3 px-7 py-3.5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-semibold tracking-[0.15em] uppercase hover:bg-black dark:hover:bg-white transition-colors"
+          >
+            お問い合わせ
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a
+            href="/#portfolio"
+            class="inline-flex items-center gap-3 px-7 py-3.5 border border-zinc-900 dark:border-zinc-100 text-sm font-semibold tracking-[0.15em] uppercase hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-900 transition-colors"
+          >
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Works
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Other projects -->
   {others.length > 0 && (
-    <section class="py-16 md:py-24 border-t border-zinc-200/60 dark:border-zinc-800/60">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="w-8 h-px bg-blue-600"></div>
-          <span class="text-sm font-medium text-blue-600">Other projects</span>
+    <section class="py-20 md:py-32 border-t border-zinc-200 dark:border-zinc-800">
+      <div class="max-w-[1200px] mx-auto px-6 md:px-10">
+        <div class="grid md:grid-cols-[180px_1fr] gap-8 md:gap-14 items-start">
+          <span class="eyebrow">More</span>
+          <div>
+            <h2 class="text-2xl md:text-4xl font-bold tracking-tight leading-[1.2]">他の事例も見る</h2>
+          </div>
         </div>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-10">他の事例も見る</h2>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {others.map((p) => (
-            <a
-              href={`/projects/${p.slug}`}
-              class="group rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:shadow-lg hover:-translate-y-0.5 transition-all"
-            >
-              <div class={`relative aspect-[16/10] bg-gradient-to-br ${p.gradient} flex items-center justify-center overflow-hidden`}>
-                {p.video && p.landscape ? (
-                  <video src={p.video} muted loop playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover"></video>
-                ) : p.video ? (
-                  <video src={p.video} muted loop playsinline preload="metadata" class="h-[88%] w-auto rounded-2xl ring-4 ring-white/50 dark:ring-zinc-900/40 shadow-2xl"></video>
-                ) : p.image ? (
-                  <img src={p.image} alt={p.title} loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
-                ) : (
-                  <span class="text-zinc-400 text-xs">[ サムネイル ]</span>
-                )}
-              </div>
-              <div class="p-5">
-                <span class="text-xs font-medium text-blue-600">{p.category}</span>
-                <h3 class="mt-1.5 font-bold group-hover:text-blue-600 transition-colors">{p.title}</h3>
-                <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">{p.desc}</p>
-              </div>
-            </a>
-          ))}
+        <div class="mt-12 md:mt-16 grid md:grid-cols-[180px_1fr] gap-8 md:gap-14 items-start">
+          <span></span>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+            {others.slice(0, 6).map((p, i) => (
+              <a href={`/projects/${p.slug}`} class="group block">
+                <div class={`relative aspect-[4/3] bg-gradient-to-br ${p.gradient} overflow-hidden`}>
+                  {p.video && p.landscape ? (
+                    <video src={p.video} muted loop playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover"></video>
+                  ) : p.video ? (
+                    <video src={p.video} muted loop playsinline preload="metadata" class="h-[88%] w-auto mx-auto mt-[6%] shadow-xl"></video>
+                  ) : p.image ? (
+                    <img src={p.image} alt={p.title} loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                  ) : (
+                    <span class="absolute inset-0 flex items-center justify-center text-zinc-400 text-xs tracking-[0.2em] uppercase">No Image</span>
+                  )}
+                </div>
+                <div class="mt-4 text-[11px] tracking-[0.22em] uppercase text-zinc-900 dark:text-zinc-100 font-semibold">
+                  {String(i + 1).padStart(2, "0")} — {p.category}
+                </div>
+                <h3 class="mt-2 font-bold text-base md:text-lg leading-snug">{p.title}</h3>
+                <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">{p.desc}</p>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
